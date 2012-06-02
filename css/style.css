@@ -103,8 +103,23 @@ body{
 	box-shadow: 0 1px 1px #ccc;
 }
 
+.black-right-header img{
+	top: 15px!important;
+}
+
+.black-right-header div{
+	display:inline-block;
+}
+
+#buddyListOptionsIcon{
+	top: 11px!important;
+	right:auto!important;
+	left:15%!important;
+	margin-left:-25px!important;
+}
+
 .header-text{
-	padding: 8px 27px!important;
+	padding: 6px 27px!important;
 	color:#503C03!important;
 	font-weight:bold;
 	font-size:13px;

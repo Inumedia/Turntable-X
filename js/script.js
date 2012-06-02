@@ -106,16 +106,17 @@ TurntableX.Init = function(){
 	TurntableX.innerRoomView = $(".roomView > div:eq(1)").attr("style","").width("78%").height("100%");
 	
 	TurntableX.chatNodes = {};
-	util.buildTree(TurntableX.chatLayout, TurntableX.chatNodes);
-	//mRoomControl.nodes = $.extend(mRoomControl.nodes, chatNodes, true);
-	//$(chatNodes.chatForm).submit(mRoomControl.speak);
-	//$(chatNodes.chatText).keydown(mRoomControl.chatKeyDownListener);
+	TurntableX.chatTree = util.buildTree(TurntableX.chatLayout, TurntableX.chatNodes);
+	TurntableX.mRoomControl.nodes = $.extend(TurntableX.mRoomControl.nodes, TurntableX.chatNodes, true);
+	$(TurntableX.chatNodes.chatForm).submit(TurntableX.mRoomControl.speak);
+	$(TurntableX.chatNodes.chatText).keydown(TurntableX.mRoomControl.chatKeyDownListener);
 	
 	//$("#playlist, #playlistContainer").remove();
 	//$("#maindiv").prepend("<div id='playlistContainer' style='width:15%;height:100%;overflow:auto;float:right;'><div id='playlist'></div></div>");
 	//turntable.playlist.init();
 	//turntable.playlist.loadList();
 	$(".chat-container, .guest-list-container").remove();
+	TurntableX.innerRoomView.append(TurntableX.chatTree);
 }
 
 room_props = [["https://s3.amazonaws.com/static.turntable.fm/roommanager_assets/props/dj_table.png", 8, 111, 115]];

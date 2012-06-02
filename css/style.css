@@ -151,9 +151,10 @@ body{
 }
 
 .chat-container{
-	top: auto;
+	top: auto!important;
 	bottom: 0;
 	margin-left:14%;
+	width:50%!important;
 	border-top-left-radius:5px;
 	border-top-right-radius:5px;
 }

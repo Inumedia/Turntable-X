@@ -58,6 +58,9 @@ TurntableX.Init = function(){
 	TurntableX.innerRoomView = $(".roomView > div:eq(1)").attr("style","").width("100%").height("100%");
 }
 
-TurntableX.Log("Wtf. ");
+BuddyListPM.prototype.toggle = function(){}
+BuddyListPM.prototype.isClosed = function(){ return false; }
+turntable.playlist.old_init = turntable.playlist.init;
+
 /// This is where we begin :D
 $(document).ready(TurntableX.GetRoomControl)

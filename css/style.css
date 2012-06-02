@@ -1,0 +1,184 @@
+body, html, #maindiv, #turntable, #roomView, #buddyListMain{
+	width:100%!important;
+	height:100%!important;
+}
+body{
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAABQCAIAAADk7aCWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjEwMPRyoQAAAWhJREFUaEPF2sFthEAQRNEJwBE5HyeyQTga3zYKR8PCSEggGOiuripae139edcSbXr/T18/4O/3b0KvLX/8foHh+cXzu6Hr4Qp6fjR0PfwEeg3b0WvYjt6EvehN2Iveh43ofdiIPoRd6EPYhT4LW9BnYQt6ENajB2E9ehwWo8dhMfoyrERfhpXou7AMfReWoQNhDToQ1qBjYQE6Fhagw2E2OhxmozNhKjoTpqKTYR46Geah82ESOh8moaEwAw2FGWg0XEaj4TK6EK6hGzzbFJeTtmxN8BXQbVm40K2qgu7hJ9A9/AR6DdvRa9iO3oS96E3Yi96Hjeh92Ig+hF3oQ9iFPgtb0GdhC3oQ1qMHYT16HBajx2Ex+jKsRF+Glei7sAx9F5ahA2ENOhDWoGNhAToWFqDDYTY6HGajM2EqOhOmopNhHjoZ5qHzYRI6HyahoTADDYUZaDRcRqPhMroQrqH73AR/VlWYiz6MyqQ8CvaeBAAAAABJRU5ErkJggg==) repeat-x!important;
+	min-height:600px;
+}
+#maindiv{
+	background-color:white!important;
+	width:100%!important;
+	height:100%!important;
+}
+
+#outer{
+	width: 85%!important;
+	height:100%!important;
+	float:right;
+}
+
+#turntable{
+	background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjEwMPRyoQAAANpJREFUKFMlj21ugzAQRH2NmI8oUgm+B7TXwXZ+4PQIcLgGbBxIVOUqeSaStbJ2Zt7uirqP7fBSvc9MLEzI9ne08+cvfsatcvFgkEOub1RpQ9Ksl3oRUvu8W050DQlf4EAws4I6bqLoUpc0FWupYczV770Z/2sXBJyDvWGHiUCUWd/DWjufa5/gJzMjpKj5q1xox+f5eicmrRf5JWTdtK89Kbe1MPvICHhHswBPO+Ol2wwPLpQ2ZnYqNZ8gGIas+vDRdiZuT7/UURQ6quvSDOuXW/fDIhvhgM85b35tjb2MOKTdAAAAAElFTkSuQmCC);
+}
+
+#buddyListContainer{
+	display:block!important;
+	float:left;
+	width:15%!important;
+	height:100%!important;
+	position: static!important;
+}
+
+#buddyListHeader, #buddyListTitle{
+	width:100%!important;
+	height:auto!important;
+	border-radius:0px!important;
+	border: 0px none transparent!important;
+	background:transparent!important;
+	text-align:center;
+}
+
+#buddyListTitle{
+	text-shadow: 0 0 0 transparent!important;
+	box-shadow: 0 1px 1px #ccc!important;
+	padding: 5px 0!important;
+}
+
+#buddyListMain{
+	border-radius:0px!important;
+	box-shadow: 0 0 0 transparent;
+}
+
+#buddyList{
+	height:auto!important;
+	max-height:none!important;
+	position:absolute;
+	bottom:0px;
+	top:41px;
+	width:15%;
+	overflow:auto;
+	background:transparent!important;
+}
+
+.buddy{
+	padding: 10px 0!important;
+	background:transparent!important;
+}
+.buddy:hover{
+	background:#0182AF!important;
+}
+
+#top-panel, #buddyListNipple, #footer, #privateChatIcon{
+	display: none;
+}
+
+#right-panel{
+	width:22%!important;
+	height:100%!important;
+	float:right;
+	position:absolute;
+	right:0px!important;
+	top:0px!important;
+}
+.queueView, .mainPane, .playlist-container{
+	height: 100%!important;
+}
+
+.playlist-container .queueView .songlist{
+	height: auto!important;
+	position:absolute;
+	top:68px;
+	bottom:0px;
+}
+
+.playlist-container, .chat-container, .guest-list-container{
+	position:static;
+	background:white!important;
+}
+
+.black-right-header{
+	height:40px!important;
+	background:transparent!important;
+	box-shadow: 0 1px 1px #ccc;
+}
+
+.header-text{
+	padding: 8px 27px!important;
+	color:#503C03!important;
+	font-weight:bold;
+	font-size:13px;
+	line-height:30px;
+	position:static!important;
+}
+
+.playlist-container .panes{
+	top: 40px!important;
+}
+
+.playlist-container .song, .playlist-container .uploading{
+	height: 51px!important;
+	padding: 5px!important;
+}
+
+.playlist-container .song.currentSong .progress, .playlist-container .song.topSong{
+	background-position:0 13px!important;
+}
+
+.playlist-container .song .goTop{
+	top:22px!important;
+}
+
+.playlist-container .song .playSample{
+	top:23px!important;
+}
+
+.playlist-container .song .pauseSample{
+	top:25px!important;
+}
+
+.playlist-container .song .title, .playlist-container .processing .text, .playlist-container .uploading .text{
+	top:18px!important;
+}
+
+.playlist-container .song .details, .playlist-container .uploading .details{
+	top:31px!important;
+}
+
+.playlist-container .queueView .song .remove{
+	top:25px!important;
+	right:26px!important;
+}
+
+.chat-container{
+	top: auto;
+	bottom: 0;
+	margin-left:14%;
+	border-top-left-radius:5px;
+	border-top-right-radius:5px;
+}
+
+.chat-container .messages, .guest-list-container .guests{
+	top:40px!important;
+	height:173px!important;
+}
+
+.chat-container .messages .message{
+	width: 100%!important;
+}
+
+.chatResizeIcon{
+	display:none;
+}
+
+div.chatBar{
+	width: 100%!important;
+}
+
+form.chatBox{
+	padding: 9px 13px 9px 9px;
+}
+
+form.chatBox input {
+	width:100%;
+}

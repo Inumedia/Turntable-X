@@ -56,11 +56,26 @@ TurntableX.Init = function(){
 		$("#" + TurntableX.idsToRemove[i]).remove();
 		
 	TurntableX.innerRoomView = $(".roomView > div:eq(1)").attr("style","").width("100%").height("100%");
+	
+	$("#playlist").remove();
+	$("#maindiv").append("<div id='playlist'></div>");
 }
 
+room_props = [["https://s3.amazonaws.com/static.turntable.fm/roommanager_assets/props/dj_table.png", 8, 111, 115]];
 BuddyListPM.prototype.toggle = function(){}
 BuddyListPM.prototype.isClosed = function(){ return false; }
 turntable.playlist.old_init = turntable.playlist.init;
+turntable.playlist.init = function(){
+	if(!this.initialized)
+		this.old_init.apply(this, arguments);
+	this.initialized = true;
+}
+turntable.old_reloadPage = turntable.reloadPage;
+turntable.reloadPage = function(){
+	TurntableX.Log("Welp.", arguments);
+	this.old_reloadPage.apply(this,arguments);
+	TurntableX.Init();
+}
 
 /// This is where we begin :D
 $(document).ready(TurntableX.GetRoomControl)

@@ -1,6 +1,6 @@
 {
 	"name": "Turntable X",
-   	"version": "2.5.6.2",
+   	"version": "0.0.0.0",
 	"description": "A minimalistic and colorful Turntable restyling and redesigning.",
    	"permissions":[
 		"http://turntable.fm/"
@@ -19,7 +19,7 @@
 			  "http://turntable.fm/static/*"
 			],
 			"js": ["js/inject.js", "js/jquery.min.js"],
-			"css": ["css/customavi.css"],
+			"css": ["css/style.css"],
 			"run_at": "document_idle"
 		}
 	]

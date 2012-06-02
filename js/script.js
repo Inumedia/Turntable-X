@@ -1,5 +1,4 @@
 TurntableX.mConstObject = null;
-TurntableX.mConstObjectName = null;
 TurntableX.mRoomControl = null;
 TurntableX.Log("Loaded Turntable-X");
 
@@ -36,16 +35,65 @@ TurntableX.GetCallbackObject = function(){
 			if(sObj && sObj.callback){
 				/// We've found the callback control object and can now continue loading the custom avatars.
 				TurntableX.mConstObject = sObj;
-				TurntableX.Init();
+				TurntableX.FirstTimeInit();
 				return; 
 			} 
 		}
 		/// We already have the callback object, so we can just start loading the custom avatars.
 	else{ 
-		TurntableX.Init();
+		TurntableX.FirstTimeInit();
 		return;
 	}
 	setTimeout(TurntableX.GetCallbackObject, 100);
+}
+
+TurntableX.FirstTimeInit = function(){
+	TurntableX.chatLayout = ["div.chat-container",
+        {}, ["div.chatHeader.black-right-header",
+        {}, ["img.icon",
+        {
+          src: "https://s3.amazonaws.com/static.turntable.fm/images/room/chat_icon.png"
+        }],
+          ["div.header-text",
+          {}, "Chat"],
+          ["div##chatSound.chatsound",
+          {}, ["div.dingOn", "ding on"],
+            ["div.dingMention", "ding mention"],
+            ["div.dingOff", "ding off"]
+          ],
+          ["div.chatResizeIcon"]
+        ],
+          ["div##chatLog.messages"],
+          ["div.chatBar",
+          {}, /*["div.guestListButton",
+          {
+            event: {
+              click: function() {
+                $("div.guest-list-container").animate({
+                  marginLeft: "0px"
+                });
+                TurntableX.mRoomControl.cancelNameSuggest();
+              },
+              mouseover: function() {
+                $(this).find(".guestListIcon").addClass("slideRight");
+              },
+              mouseout: function() {
+                $(this).find(".guestListIcon").removeClass("slideRight");
+              }
+            }
+          }, ["div.guestListIcon"]],*/
+            ["form##chatForm.chatBox",
+            {}, ["input##chatText",
+            {
+              event: {
+                keyup: TurntableX.mRoomControl.chatTextListener
+              },
+              type: "text",
+              placeholder: "enter a message"
+            }]]
+          ]
+        ];
+    this.Init();
 }
 
 TurntableX.Init = function(){
@@ -55,26 +103,40 @@ TurntableX.Init = function(){
 	for(var i = 0; i < TurntableX.idsToRemove.length; ++i)
 		$("#" + TurntableX.idsToRemove[i]).remove();
 		
-	TurntableX.innerRoomView = $(".roomView > div:eq(1)").attr("style","").width("100%").height("100%");
+	TurntableX.innerRoomView = $(".roomView > div:eq(1)").attr("style","").width("78%").height("100%");
 	
-	$("#playlist").remove();
-	$("#maindiv").append("<div id='playlist'></div>");
+	TurntableX.chatNodes = {};
+	util.buildTree(TurntableX.chatLayout, TurntableX.chatNodes);
+	//mRoomControl.nodes = $.extend(mRoomControl.nodes, chatNodes, true);
+	//$(chatNodes.chatForm).submit(mRoomControl.speak);
+	//$(chatNodes.chatText).keydown(mRoomControl.chatKeyDownListener);
+	
+	//$("#playlist, #playlistContainer").remove();
+	//$("#maindiv").prepend("<div id='playlistContainer' style='width:15%;height:100%;overflow:auto;float:right;'><div id='playlist'></div></div>");
+	//turntable.playlist.init();
+	//turntable.playlist.loadList();
+	$(".chat-container, .guest-list-container").remove();
 }
 
 room_props = [["https://s3.amazonaws.com/static.turntable.fm/roommanager_assets/props/dj_table.png", 8, 111, 115]];
 BuddyListPM.prototype.toggle = function(){}
 BuddyListPM.prototype.isClosed = function(){ return false; }
-turntable.playlist.old_init = turntable.playlist.init;
-turntable.playlist.init = function(){
-	if(!this.initialized)
-		this.old_init.apply(this, arguments);
-	this.initialized = true;
-}
 turntable.old_reloadPage = turntable.reloadPage;
 turntable.reloadPage = function(){
 	TurntableX.Log("Welp.", arguments);
 	this.old_reloadPage.apply(this,arguments);
-	TurntableX.Init();
+	TurntableX.mRoomControl = null;
+	TurntableX.mContObject = null;
+	TurntableX.GetRoomControl();
+}
+
+Room.prototype.old_setupRoom = Room.prototype.setupRoom;
+Room.prototype.setupRoom = function(){
+	TurntableX.Log("Welp2.", arguments);
+	this.old_setupRoom.apply(this,arguments);
+	TurntableX.mRoomControl = null;
+	TurntableX.mContObject = null;
+	TurntableX.GetRoomControl();
 }
 
 /// This is where we begin :D

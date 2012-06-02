@@ -17,9 +17,7 @@ TurntableX.LoadJavascript = function(f,g,h) {
   }
   
   document.body.appendChild(js);
-
-	TurntableX.Log("Loading JS" + js.src);
-
+  
   setTimeout(function() {
     if (!h && window[g]) {
       d.resolve()

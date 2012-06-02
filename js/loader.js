@@ -11,12 +11,14 @@ TurntableX.LoadJavascript = function(f,g,h) {
   var d = new jQuery.Deferred();
   
   var js = document.createElement('script');
-  js.src = CustomAvatarsBase + 'js/'+f+'.js?v=' + Date.now();
+  js.src = TurntableX.Base + 'js/'+f+'.js?v=' + Date.now();
   if (h&&h.url) {
     js.src = h.url+f+'.js';
   }
   
   document.body.appendChild(js);
+
+	TurntableX.Log("Loading JS" + js.src);
 
   setTimeout(function() {
     if (!h && window[g]) {
@@ -40,7 +42,7 @@ $.when(
   TurntableX.LoadJavascript('underscore', '_')
 ).then(function() {
   $.when(
-	TurntableX.LoadJavascript('script', 'mConstObject')
+	TurntableX.LoadJavascript('script', 'TurntableX.mConstObject')
   ).then(function() {
   	TurntableX.Log("Ready.");
   })

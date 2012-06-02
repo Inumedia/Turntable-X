@@ -1,25 +1,31 @@
-TurntableX.TurntableX.mConstObject = null;
-TurntableX.TurntableX.mConstObjectName = null;
-TurntableX.TurntableX.mRoomControl = null;
-TurntableX.Log("Loaded Custom Avatars");
+TurntableX.mConstObject = null;
+TurntableX.mConstObjectName = null;
+TurntableX.mRoomControl = null;
+TurntableX.Log("Loaded Turntable-X");
+
+TurntableX.propsToRemove = ["https://s3.amazonaws.com/static.turntable.fm/roommanager_assets/props/wallpaper.png", 
+					"https://s3.amazonaws.com/static.turntable.fm/roommanager_assets/props/floor.png",
+					"https://s3.amazonaws.com/static.turntable.fm/roommanager_assets/props/gauge.png",
+					];
+TurntableX.idsToRemove = ["meterNeedle"];
 
 TurntableX.GetRoomControl = function(){
 	TurntableX.Log("Getting Room Control")
-	if(!TurntableX.TurntableX.mRoomControl) 
+	if(!TurntableX.mRoomControl) 
 		for(sVar in turntable) {
-			TurntableX.TurntableX.mRoomControl = eval('turntable.'+sVar);
+			TurntableX.mRoomControl = eval('turntable.'+sVar);
 			
 			if(!TurntableX.mRoomControl || !TurntableX.mRoomControl.selfId)
 				/// We'll try to find it again in a couple milli seconds.
-				setTimeout(GetRoomControl, 100);
+				setTimeout(TurntableX.GetRoomControl, 100);
 			else{
 				/// We have found the room control, and are continuing to find the callback object.
-				GetCallbackObject();			
+				TurntableX.GetCallbackObject();			
 			}
 			return;
 		} 
 		/// We already have the room control, and are continuing to make sure we have the callback object.
-	else GetCallbackObject();
+	else TurntableX.GetCallbackObject();
 }
 
 TurntableX.GetCallbackObject = function(){
@@ -39,12 +45,19 @@ TurntableX.GetCallbackObject = function(){
 		TurntableX.Init();
 		return;
 	}
-	setTimeout(GetCallbackObject, 100);
+	setTimeout(TurntableX.GetCallbackObject, 100);
 }
 
 TurntableX.Init = function(){
-	
+	TurntableX.Log("Here we go.");
+	for(var i = 0; i < TurntableX.propsToRemove.length; ++i)
+		$("img[src='"+TurntableX.propsToRemove[i]+"']").remove();
+	for(var i = 0; i < TurntableX.idsToRemove.length; ++i)
+		$("#" + TurntableX.idsToRemove[i]).remove();
+		
+	TurntableX.innerRoomView = $(".roomView > div:eq(1)").attr("style","").width("100%").height("100%");
 }
 
+TurntableX.Log("Wtf. ");
 /// This is where we begin :D
 $(document).ready(TurntableX.GetRoomControl)

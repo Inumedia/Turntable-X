@@ -1,5 +1,6 @@
 TurntableX.mConstObject = null;
 TurntableX.mRoomControl = null;
+TurntableX.webSocket = null;
 TurntableX.Log("Loaded Turntable-X");
 
 TurntableX.propsToRemove = ["https://s3.amazonaws.com/static.turntable.fm/roommanager_assets/props/wallpaper.png", 
@@ -9,10 +10,26 @@ TurntableX.propsToRemove = ["https://s3.amazonaws.com/static.turntable.fm/roomma
 TurntableX.idsToRemove = ["meterNeedle"];
 
 TurntableX.GetRoomControl = function(){
-	TurntableX.Log("Getting Room Control")
-	if(!TurntableX.mRoomControl) 
+	TurntableX.Log("Getting Room Control + webSocket interface.");
+	var sFoundHashedAddr = false;
+	for(sVar in turntable){
+		if(!TurntableX.mRoomControl)
+			TurntableX.mRoomControl = turntable[sVar];
+		
+		if(sFoundHashedAddr){
+			TurntableX.webSocket = turntable[sVar];
+			break;
+		}
+			
+		sFoundHashedAddr = sVar == "getHashedAddr";
+	}
+	
+	if(TurntableX.mRoomControl && TurntableX.webSocket)
+		TurntableX.GetCallbackObject();
+	else setTimeout(TurntableX.GetRoomControl, 100);
+	
+	/*if(!TurntableX.mRoomControl) 
 		for(sVar in turntable) {
-			TurntableX.mRoomControl = eval('turntable.'+sVar);
 			
 			if(!TurntableX.mRoomControl || !TurntableX.mRoomControl.selfId)
 				/// We'll try to find it again in a couple milli seconds.
@@ -24,7 +41,7 @@ TurntableX.GetRoomControl = function(){
 			return;
 		} 
 		/// We already have the room control, and are continuing to make sure we have the callback object.
-	else TurntableX.GetCallbackObject();
+	else TurntableX.GetCallbackObject();*/
 }
 
 TurntableX.GetCallbackObject = function(){
@@ -110,6 +127,35 @@ TurntableX.Init = function(){
 	TurntableX.mRoomControl.nodes = $.extend(TurntableX.mRoomControl.nodes, TurntableX.chatNodes, true);
 	$(TurntableX.chatNodes.chatForm).submit(TurntableX.mRoomControl.speak);
 	$(TurntableX.chatNodes.chatText).keydown(TurntableX.mRoomControl.chatKeyDownListener);
+	
+	if (!util.getSetting("playdingsound")) {
+      var b = util.getSetting("playding") == "true" ? "on" : "mention";
+      util.setSetting("playdingsound", b);
+    }
+    $(TurntableX.chatNodes.chatSound).addClass(util.getSetting("playdingsound"));
+    $(TurntableX.chatNodes.chatSound).bind({
+      mousedown: function(c) {
+        c.stopPropagation();
+      },
+      selectstart: function(c) {
+        c.preventDefault();
+      },
+      click: function() {
+        var d = $(".chatsound");
+        var e, c;
+        if (d.hasClass("on")) {
+          e = "on", c = "mention";
+        } else {
+          if (d.hasClass("mention")) {
+            e = "mention", c = "off";
+          } else {
+            e = "off", c = "on";
+          }
+        }
+        d.removeClass(e).addClass(c);
+        util.setSetting("playdingsound", c);
+      }
+    });
 	
 	//$("#playlist, #playlistContainer").remove();
 	//$("#maindiv").prepend("<div id='playlistContainer' style='width:15%;height:100%;overflow:auto;float:right;'><div id='playlist'></div></div>");

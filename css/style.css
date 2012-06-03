@@ -103,7 +103,7 @@ body{
 	box-shadow: 0 1px 1px #ccc;
 }
 
-.black-right-header img{
+.black-right-header > *{
 	top: 15px!important;
 }
 
@@ -185,6 +185,10 @@ body{
 
 .chatResizeIcon{
 	display:none;
+}
+
+.chat-container .chatHeader .chatSound{
+	line-height:normal!important;
 }
 
 div.chatBar{

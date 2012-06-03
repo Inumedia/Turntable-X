@@ -5,6 +5,7 @@ body, html, #maindiv, #turntable, #roomView, #buddyListMain{
 body{
 	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAABQCAIAAADk7aCWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjEwMPRyoQAAAWhJREFUaEPF2sFthEAQRNEJwBE5HyeyQTga3zYKR8PCSEggGOiuripae139edcSbXr/T18/4O/3b0KvLX/8foHh+cXzu6Hr4Qp6fjR0PfwEeg3b0WvYjt6EvehN2Iveh43ofdiIPoRd6EPYhT4LW9BnYQt6ENajB2E9ehwWo8dhMfoyrERfhpXou7AMfReWoQNhDToQ1qBjYQE6Fhagw2E2OhxmozNhKjoTpqKTYR46Geah82ESOh8moaEwAw2FGWg0XEaj4TK6EK6hGzzbFJeTtmxN8BXQbVm40K2qgu7hJ9A9/AR6DdvRa9iO3oS96E3Yi96Hjeh92Ig+hF3oQ9iFPgtb0GdhC3oQ1qMHYT16HBajx2Ex+jKsRF+Glei7sAx9F5ahA2ENOhDWoGNhAToWFqDDYTY6HGajM2EqOhOmopNhHjoZ5qHzYRI6HyahoTADDYUZaDRcRqPhMroQrqH73AR/VlWYiz6MyqQ8CvaeBAAAAABJRU5ErkJggg==) repeat-x!important;
 	min-height:600px;
+	min-width:1280px;
 }
 #maindiv{
 	background-color:white!important;
@@ -57,7 +58,8 @@ body{
 	bottom:0px;
 	top:41px;
 	width:15%;
-	overflow:auto;
+	min-width:192px;
+	overflow-y:auto;
 	background:transparent!important;
 }
 
@@ -114,8 +116,7 @@ body{
 #buddyListOptionsIcon{
 	top: 11px!important;
 	right:auto!important;
-	left:15%!important;
-	margin-left:-25px!important;
+	left:5px!important;
 }
 
 .header-text{
@@ -181,6 +182,10 @@ body{
 
 .chat-container .messages .message{
 	width: 100%!important;
+}
+
+.chatHeader{
+	cursor: pointer!important;
 }
 
 .chatResizeIcon{

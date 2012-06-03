@@ -115,10 +115,15 @@ TurntableX.FirstTimeInit = function(){
 
 TurntableX.Init = function(){
 	TurntableX.Log("Here we go.");
+	var toRemove = [];
 	for(var i = 0; i < TurntableX.propsToRemove.length; ++i)
-		$("img[src='"+TurntableX.propsToRemove[i]+"']").remove();
+		toRemove.push("img[src='"+TurntableX.propsToRemove[i]+"']");
 	for(var i = 0; i < TurntableX.idsToRemove.length; ++i)
-		$("#" + TurntableX.idsToRemove[i]).remove();
+		toRemove.push("#" + TurntableX.idsToRemove[i]);
+	toRemove.push("a[style='position: absolute; left: 370px; top: 555px; z-index: 10001; ']");
+	toRemove.push("a[style='position: absolute; left: 154px; top: 555px; z-index: 10001; ']");
+		
+	$(toRemove.join(', ')).remove();
 		
 	TurntableX.innerRoomView = $(".roomView > div:eq(1)").attr("style","").width("78%").height("100%");
 	
@@ -156,6 +161,7 @@ TurntableX.Init = function(){
         util.setSetting("playdingsound", c);
       }
     });
+	$("a[style='position: absolute; left: 370px; top: 555px; z-index: 10001; '], a[style='position: absolute; left: 154px; top: 555px; z-index: 10001; ']").remove();
 	
 	//$("#playlist, #playlistContainer").remove();
 	//$("#maindiv").prepend("<div id='playlistContainer' style='width:15%;height:100%;overflow:auto;float:right;'><div id='playlist'></div></div>");

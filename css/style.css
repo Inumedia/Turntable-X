@@ -1,4 +1,4 @@
-body, html, #maindiv, #turntable, #roomView, #buddyListMain{
+body, html, #maindiv, #turntable, .roomView, #buddyListMain{
 	width:100%!important;
 	height:100%!important;
 }
